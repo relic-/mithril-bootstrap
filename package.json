@@ -1,6 +1,7 @@
 {
   "name": "mithril-bootstrap",
   "version": "0.0.1",
+  "main": "dist/mithril-bootstrap.js",
   "author": "Vu Nguyen <ng-vu@liti.ws>",
   "description": "Mithril components using Bootstrap",
   "homepage": "http://github.com/ng-vu/mithril-bootstrap",
