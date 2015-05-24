@@ -1076,4 +1076,4 @@ ui.typeahead = function(options) {
   };
 };
 
-})(Mithril);
+})(m);

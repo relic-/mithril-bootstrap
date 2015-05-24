@@ -17,4 +17,4 @@ INCLUDE('rating/rating')
 INCLUDE('tabs/tabs')
 INCLUDE('timepicker/timepicker')
 INCLUDE('typeahead/typeahead')
-})(Mithril);
+})(m);
