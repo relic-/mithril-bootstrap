@@ -1,8 +1,13 @@
 /** @jsx m */
-;(function(m) {
+
+import m from 'mithril';
 
 var u = m.u = {};
 var ui = m.ui = {};
+//var ui = m.ui = {};
+
+export default ui;
+//export u;
 
 /** @jsx m */
 var shift = Array.prototype.shift;
@@ -199,14 +204,14 @@ ui.renderAlert = function(options) {
   var msg = u.exec(options.msg) || '';
 
   return m("div", {class:"alert alert-" + type + (options.close? " alert-dismissable": "")}, [
-    
+
       options.close?
       m("button", {class:"close", onclick:options.close}, [
         m("span", {'aria-hidden':"true"}, ["×"]),
         m("span", {class:"sr-only"}, ["Close"])
       ]):
       [],
-    
+
     m("div", [msg])
   ]);
 };
@@ -538,7 +543,7 @@ document.addEventListener('keydown', function(event) {
   if (event.keyCode === 27 ) dropdownCloseAll();
 });
 
-m.ui.configDropdown = function(opening) {
+ui.configDropdown = function(opening) {
   return function(element, isInit) {
     if (!isInit) {
       var toggle = element.querySelector('.dropdown-toggle');
@@ -691,39 +696,39 @@ ui.pagination = function(config) {
       );
     }
     return m("ul", {class:"pagination"}, [
-  
+
     !ctrl.boundaryLinks()? null :
     m("li", {class:page===0? 'disabled':''}, [
       m("a", {href:"#", onclick:u.mute(u.bind(ctrl.setPage, ctrl, 0))}, [
         ctrl.firstText()
       ])
     ]),
-  
-  
+
+
     !ctrl.directionLinks()? null :
     m("li", {class:page===0? 'disabled':''}, [
       m("a", {href:"#", onclick:u.mute(u.bind(ctrl.setPage, ctrl, page-1))}, [
         ctrl.previousText()
       ])
     ]),
-  
+
   cells,
-  
+
     !ctrl.directionLinks()? null :
     m("li", {class:page===last? 'disabled':''}, [
       m("a", {href:"#", onclick:u.mute(u.bind(ctrl.setPage, ctrl, page+1))}, [
         ctrl.nextText()
       ])
     ]),
-  
-  
+
+
     !ctrl.boundaryLinks()? null :
     m("li", {class:page===last? 'disabled':''}, [
       m("a", {href:"#", onclick:u.mute(u.bind(ctrl.setPage, ctrl, last))}, [
         ctrl.lastText()
       ])
     ])
-  
+
 ]);
   }
 
@@ -1075,5 +1080,3 @@ ui.typeahead = function(options) {
     view: view,
   };
 };
-
-})(m);
