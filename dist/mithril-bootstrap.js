@@ -342,10 +342,18 @@ ui.collapse = function(options) {
 var datepickerList = [];
 
 document.addEventListener('click', function() {
-	for (var i in datepickerList) {
-		datepickerList[i].opening(false);
-	}
-	m.redraw();
+    if (datepickerList.length) {
+        var redraw = false;
+	    for (var i in datepickerList) {
+	        if (datepickerList[i].opening()) {
+	            redraw = true;
+    		    datepickerList[i].opening(false);
+    		}
+    	}
+	    if (redraw) {
+	        m.redraw();
+	    }
+    }
 });
 
 ui.datepicker = function(options) {
@@ -527,12 +535,14 @@ function dropdownSetOpen(element, opening) {
 }
 
 function dropdownCloseAll(element) {
-  for (var i in dropdownList) {
-    if (dropdownList[i].element === element) continue;
-    dropdownList[i].opening(false);
-    dropdownList[i].element.classList.remove('open');
+  if (dropdownList.length) {
+    for (var i in dropdownList) {
+        if (dropdownList[i].element === element) continue;
+        dropdownList[i].opening(false);
+        dropdownList[i].element.classList.remove('open');
+    }
+    dropdownList = [];
   }
-  dropdownList = [];
 }
 
 document.addEventListener('click',function() {
@@ -937,13 +947,13 @@ ui.timepicker = function() {
 /** @jsx m */
 var typeaheadList = [];
 
-document.addEventListener('click',function(event) {
+/*document.addEventListener('click',function(event) {
   for (var i in typeaheadList)  {
     typeaheadList[i].xlist = u.prop([]);
     typeaheadList[i].highlight = m.prop(0);
   }
   m.redraw();
-});
+});*/
 
 
 document.addEventListener('keydown', function(event) {
